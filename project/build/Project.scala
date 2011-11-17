@@ -69,9 +69,9 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
    * finagle-memcached contains the memcached codec, ketama, and Java and Scala
    * friendly clients.
    */
-  val memcachedProject = project(
-    "finagle-memcached", "finagle-memcached",
-    new MemcachedProject(_), coreProject)
+  // val memcachedProject = project(
+  //   "finagle-memcached", "finagle-memcached",
+  //   new MemcachedProject(_), coreProject)
 
   /**
    * finagle-kestrel contains the kestrel codec and Java and Scala
@@ -204,10 +204,13 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
   {
     override def compileOrder = CompileOrder.ScalaThenJava
 
-    projectDependencies(
-      "util" ~ "util-codec",
-      "util" ~ "util-logging"
-    )
+    // projectDependencies(
+    //   "util" ~ "util-codec",
+    //   "util" ~ "util-logging"
+    // )
+
+    val utilCodec = "com.twitter" % "twitter-codec" % "2.9.1_1.12.3"
+    val utilLogging = "com.twitter" % "twitter-logging" % "2.9.1_1.12.3"
 
     val commonsLang = "commons-lang" % "commons-lang" % "2.6" // for FastDateFormat
   }
