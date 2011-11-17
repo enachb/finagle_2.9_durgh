@@ -108,26 +108,26 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
    * finagle-serversets contains a cluster implementation using
    * twitter-common's Zookeeper-backed serverset implementation.
    */
-  // val serversetsProject = project(
-  //   "finagle-serversets", "finagle-serversets",
-  //   new ServersetsProject(_), coreProject)
+  val serversetsProject = project(
+    "finagle-serversets", "finagle-serversets",
+    new ServersetsProject(_), coreProject)
 
   /**
    * Examples for finagle
    */
-  // val exampleProject = project(
-  //   "finagle-example", "finagle-example",
-  //   new ExampleProject(_),
-  //   coreProject, httpProject, streamProject, thriftProject,
-  //   memcachedProject, kestrelProject)
+  val exampleProject = project(
+    "finagle-example", "finagle-example",
+    new ExampleProject(_),
+    coreProject, httpProject, streamProject, thriftProject,
+    memcachedProject, kestrelProject)
 
   /**
    * finagle-stress has stress/integration test suites & tools for
    * development.
    */
-  // val stressProject = project(
-  //   "finagle-stress", "finagle-stress",
-  //   new StressProject(_), coreProject, ostrich4Project, thriftProject, httpProject)
+  val stressProject = project(
+    "finagle-stress", "finagle-stress",
+    new StressProject(_), coreProject, ostrich4Project, thriftProject, httpProject)
 
   /**
    * finagle-b3 contains bindings for the B3, or BigBrotherBird, tracing
@@ -245,10 +245,7 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
     with Defaults with CompileThriftFinagle
   {
     val slf4jNop = "org.slf4j" %  "slf4j-nop" % "1.5.8" % "provided"
-
-    projectDependencies(
-      "util" ~ "util-codec"
-    )
+    val utilCodec = "com.twitter" % "util-codec" % "2.9.1_1.12.3"
   }
 
   class OstrichProject(info: ProjectInfo) extends StandardProject(info)
@@ -273,7 +270,8 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
     override def compileOrder = CompileOrder.JavaThenScala
     val thrift   = "thrift"      % "libthrift" % "0.5.0"
     val slf4jNop = "org.slf4j"   % "slf4j-nop" % "1.5.8" % "provided"
-    projectDependencies("ostrich")
+    // projectDependencies("ostrich")
+    val ostrich4 = "com.twitter" % "ostrich" % "2.9.1_4.9.3"
   }
 
   class B3Project(info: ProjectInfo) extends StandardProject(info)
