@@ -77,9 +77,9 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
    * finagle-kestrel contains the kestrel codec and Java and Scala
    * friendly clients.
    */
-  // val kestrelProject = project(
-  //   "finagle-kestrel", "finagle-kestrel",
-  //   new KestrelProject(_), coreProject, memcachedProject)
+  val kestrelProject = project(
+    "finagle-kestrel", "finagle-kestrel",
+    new KestrelProject(_), coreProject, memcachedProject)
 
   /**
    * finagle-http contains an http codec.
@@ -100,9 +100,9 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
    * finagle-stream contains a streaming http codec identical to
    * Twitter's "firehose".
    */
-  // val streamProject = project(
-  //   "finagle-stream", "finagle-stream",
-  //   new StreamProject(_), coreProject, kestrelProject)
+  val streamProject = project(
+    "finagle-stream", "finagle-stream",
+    new StreamProject(_), coreProject, kestrelProject)
 
   /**
    * finagle-serversets contains a cluster implementation using
