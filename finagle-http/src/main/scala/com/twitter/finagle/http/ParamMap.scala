@@ -103,6 +103,8 @@ class ParamMap(val request: Request)
   def -(name: String): Map[String, String] =
     Map.empty ++ iterator - name
 
+  def seq = iterator toMap 
+
   def empty = Map.empty[String, String]
 
   override def toString = {
