@@ -209,8 +209,8 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
     //   "util" ~ "util-logging"
     // )
 
-    val utilCodec = "com.twitter" % "twitter-codec" % "2.9.1_1.12.3"
-    val utilLogging = "com.twitter" % "twitter-logging" % "2.9.1_1.12.3"
+    val utilCodec = "com.twitter" % "util-codec" % "2.9.1_1.12.3"
+    val utilLogging = "com.twitter" % "util-logging" % "2.9.1_1.12.3"
 
     val commonsLang = "commons-lang" % "commons-lang" % "2.6" // for FastDateFormat
   }
