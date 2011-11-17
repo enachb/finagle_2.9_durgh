@@ -69,9 +69,9 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
    * finagle-memcached contains the memcached codec, ketama, and Java and Scala
    * friendly clients.
    */
-  // val memcachedProject = project(
-  //   "finagle-memcached", "finagle-memcached",
-  //   new MemcachedProject(_), coreProject)
+  val memcachedProject = project(
+    "finagle-memcached", "finagle-memcached",
+    new MemcachedProject(_), coreProject)
 
   /**
    * finagle-kestrel contains the kestrel codec and Java and Scala
@@ -185,12 +185,17 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
   class MemcachedProject(info: ProjectInfo) extends StandardProject(info)
     with Defaults
   {
+    override def mainJavaSourcePath = "src" / "main" / "ignore"
+    override def testJavaSourcePath = "src" / "test" / "ignore"
+
     override def compileOrder = CompileOrder.ScalaThenJava
     val junit = "junit" % "junit" % "3.8.2" % "test"
 
-    projectDependencies(
-      "util" ~ "util-hashing"
-    )
+  //   projectDependencies(
+  //     "util" ~ "util-hashing"
+  //   )
+
+    val utilHashing = "com.twitter" % "util-hashing" % "2.9.1_1.12.3"
   }
 
   class KestrelProject(info: ProjectInfo) extends StandardProject(info)
