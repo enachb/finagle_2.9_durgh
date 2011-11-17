@@ -37,33 +37,33 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
   /**
    * finagle-ostrich implements a StatsReceiver for the Ostrich 2.x statistics library
    */
-  val ostrichProject = project(
-    "finagle-ostrich", "finagle-ostrich",
-    new OstrichProject(_), coreProject)
+  // val ostrichProject = project(
+  //   "finagle-ostrich", "finagle-ostrich",
+  //   new OstrichProject(_), coreProject)
 
   /**
    * finagle-ostrich4 implements a StatsReceiver for the Ostrich 4.x statistics library
    */
-  val ostrich4Project = project(
-    "finagle-ostrich4", "finagle-ostrich4",
-    new Ostrich4Project(_), coreProject)
+  // val ostrich4Project = project(
+  //   "finagle-ostrich4", "finagle-ostrich4",
+  //   new Ostrich4Project(_), coreProject)
 
   /**
    * finagle-thrift contains thrift codecs for use with the finagle
    * thrift service codegen. in order to be able to use thrift code
    * generation in finagle-thrift.
    */
-  val thriftProject = project(
-    "finagle-thrift", "finagle-thrift",
-    new ThriftProject(_), coreProject)
+  // val thriftProject = project(
+  //   "finagle-thrift", "finagle-thrift",
+  //   new ThriftProject(_), coreProject)
 
   /**
    * finagle-exception implements an ExceptionReceiver for the yet-to-be-named
    * (if at all) exception service.
    */
-  val exceptionProject = project(
-    "finagle-exception", "finagle-exception",
-    new ExceptionProject(_), coreProject, thriftProject)
+  // val exceptionProject = project(
+  //   "finagle-exception", "finagle-exception",
+  //   new ExceptionProject(_), coreProject, thriftProject)
 
   /**
    * finagle-memcached contains the memcached codec, ketama, and Java and Scala
@@ -77,9 +77,9 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
    * finagle-kestrel contains the kestrel codec and Java and Scala
    * friendly clients.
    */
-  val kestrelProject = project(
-    "finagle-kestrel", "finagle-kestrel",
-    new KestrelProject(_), coreProject, memcachedProject)
+  // val kestrelProject = project(
+  //   "finagle-kestrel", "finagle-kestrel",
+  //   new KestrelProject(_), coreProject, memcachedProject)
 
   /**
    * finagle-http contains an http codec.
@@ -92,58 +92,58 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
    * finagle-native contains native code aimed to increase platform fluency
    * and provide capabilities not available in the JVM
    */
-  val nativeProject = project(
-    "finagle-native", "finagle-native",
-    new NativeProject(_), coreProject, httpProject)
+  // val nativeProject = project(
+  //   "finagle-native", "finagle-native",
+  //   new NativeProject(_), coreProject, httpProject)
 
   /**
    * finagle-stream contains a streaming http codec identical to
    * Twitter's "firehose".
    */
-  val streamProject = project(
-    "finagle-stream", "finagle-stream",
-    new StreamProject(_), coreProject, kestrelProject)
+  // val streamProject = project(
+  //   "finagle-stream", "finagle-stream",
+  //   new StreamProject(_), coreProject, kestrelProject)
 
   /**
    * finagle-serversets contains a cluster implementation using
    * twitter-common's Zookeeper-backed serverset implementation.
    */
-  val serversetsProject = project(
-    "finagle-serversets", "finagle-serversets",
-    new ServersetsProject(_), coreProject)
+  // val serversetsProject = project(
+  //   "finagle-serversets", "finagle-serversets",
+  //   new ServersetsProject(_), coreProject)
 
   /**
    * Examples for finagle
    */
-  val exampleProject = project(
-    "finagle-example", "finagle-example",
-    new ExampleProject(_),
-    coreProject, httpProject, streamProject, thriftProject,
-    memcachedProject, kestrelProject)
+  // val exampleProject = project(
+  //   "finagle-example", "finagle-example",
+  //   new ExampleProject(_),
+  //   coreProject, httpProject, streamProject, thriftProject,
+  //   memcachedProject, kestrelProject)
 
   /**
    * finagle-stress has stress/integration test suites & tools for
    * development.
    */
-  val stressProject = project(
-    "finagle-stress", "finagle-stress",
-    new StressProject(_), coreProject, ostrich4Project, thriftProject, httpProject)
+  // val stressProject = project(
+  //   "finagle-stress", "finagle-stress",
+  //   new StressProject(_), coreProject, ostrich4Project, thriftProject, httpProject)
 
   /**
    * finagle-b3 contains bindings for the B3, or BigBrotherBird, tracing
    * framework. Send messages via scribe that is collected, indexed and analyzed.
    */
-  val b3Project = project(
-    "finagle-b3", "finagle-b3",
-    new B3Project(_), coreProject, thriftProject)
+  // val b3Project = project(
+  //   "finagle-b3", "finagle-b3",
+  //   new B3Project(_), coreProject, thriftProject)
 
   /**
    * finagle-commons-stats contains bindings for using finagle in java projects
    * that export their stats through the twitter commons libraries
    */
-  val commonsStatsProject = project(
-    "finagle-commons-stats", "finagle-commons-stats",
-    new CommonsStatsProject(_), coreProject)
+  // val commonsStatsProject = project(
+  //   "finagle-commons-stats", "finagle-commons-stats",
+  //   new CommonsStatsProject(_), coreProject)
 
   trait Defaults
     extends ProjectDependencies
@@ -156,15 +156,19 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
     override def compileOrder = CompileOrder.ScalaThenJava
     val netty = "org.jboss.netty" %  "netty" % "3.2.5.Final"
 
-    projectDependencies(
-      "util" ~ "util-core",
-      "util" ~ "util-collection",
-      "util" ~ "util-hashing"
-    )
-
+    // projectDependencies(
+    //   "util" ~ "util-core",
+    //   "util" ~ "util-collection",
+    //   "util" ~ "util-hashing"
+    // )
+    
+    val utilCore = "com.twitter" % "util-core" % "2.9.1_1.12.3"
+    val utilCollection = "com.twitter" % "util-collection" % "2.9.1_1.12.3"
+    val utilHashing = "com.twitter" % "util-hashing" % "2.9.1_1.12.3"
+ 
     // Testing:
     val mockito = "org.mockito"             % "mockito-all"      % "1.8.5" % "test" withSources()
-    val specs   = "org.scala-tools.testing" %% "specs"      % "1.6.8" % "test" withSources()
+    val specs   = "org.scala-tools.testing" %% "specs"      % "1.6.9" % "test" withSources()
   }
 
   class ThriftProject(info: ProjectInfo) extends StandardProject(info)
@@ -282,7 +286,7 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
     override def compileOrder = CompileOrder.JavaThenScala
 
     val thrift    = "thrift"    % "libthrift" % "0.5.0"
-    val jerkson  = "com.codahale" % "jerkson_2.8.1" % "0.1.4"
+    val jerkson  = "com.codahale" % "jerkson_2.9.1" % "0.5.0"
     val jacksonCore = "org.codehaus.jackson" % "jackson-core-asl"  % "1.8.1"
     val jacksonMapper = "org.codehaus.jackson" % "jackson-mapper-asl" % "1.8.1"
     val slf4jNop  = "org.slf4j" % "slf4j-nop" % "1.5.8" % "provided"
