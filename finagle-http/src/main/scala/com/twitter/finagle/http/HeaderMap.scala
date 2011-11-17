@@ -24,6 +24,8 @@ class HeaderMap(httpMessage: HttpMessage)
       (entry.getKey, entry.getValue)
     }
 
+  def seq = httpMessage.getHeaders map { e => (e.getKey, e.getValue)  } toMap 
+
   override def keys: Iterable[String] =
     httpMessage.getHeaderNames
 

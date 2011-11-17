@@ -28,7 +28,7 @@ object ExternalMemcached { self =>
         Thread.sleep(5)
       }
     }
-    address.getOrElse { error("Couldn't get an address for the external memcached") }
+    address.getOrElse { sys.error("Couldn't get an address for the external memcached") }
   }
 
   def start() {

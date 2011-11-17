@@ -59,6 +59,8 @@ class CookieSet(message: Message) extends
 
   def iterator = cookies map { _.cookie } iterator
 
+  def seq = cookies map { _.cookie }
+
   def empty = mutable.Set[Cookie]()
 
   protected def rewriteCookieHeaders() {
