@@ -53,9 +53,9 @@ class Project(info: ProjectInfo) extends StandardParentProject(info)
    * thrift service codegen. in order to be able to use thrift code
    * generation in finagle-thrift.
    */
-  // val thriftProject = project(
-  //   "finagle-thrift", "finagle-thrift",
-  //   new ThriftProject(_), coreProject)
+  val thriftProject = project(
+    "finagle-thrift", "finagle-thrift",
+    new ThriftProject(_), coreProject)
 
   /**
    * finagle-exception implements an ExceptionReceiver for the yet-to-be-named
