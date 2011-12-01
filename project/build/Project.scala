@@ -1,12 +1,16 @@
 import sbt._
 import com.twitter.sbt._
 
-class Project(info: ProjectInfo) extends StandardParentProject(info)
-  with SubversionPublisher
+class Project(info: ProjectInfo) extends StandardParentProject(info) 
+  with PublishLocalWithMavenStyleBasePattern
+//  with SubversionPublisher
   with ParentProjectDependencies
-  with DefaultRepos
+//  with DefaultRepos
 {
-  override def subversionRepository = Some("https://svn.twitter.biz/maven-public")
+//  override def subversionRepository = Some("https://svn.twitter.biz/maven-public")
+
+  override def managedStyle = ManagedStyle.Maven
+  val publishTo = "QF Maven Repo" at "http://m0:8081/nexus/content/repositories/ext-releases/"
 
   val nettyRepo =
     "repository.jboss.org" at "http://repository.jboss.org/nexus/content/groups/public/"
